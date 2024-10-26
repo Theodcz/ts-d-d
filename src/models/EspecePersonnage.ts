@@ -1,12 +1,14 @@
 import { Maitrise } from "./Maitrise";
+import { Langues } from "./Langues";
+import { Traits } from "./Traits";
 
 export class EspecePersonnage {
   private id: string;
   private nom: string;
   private taille: string;
   private maitrises: Maitrise;
-  private langues: Array<string>;
-  private traits: Array<string>;
+  private langues: Langues;
+  private traits: Traits;
   private bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>;
 
   constructor(
@@ -14,8 +16,8 @@ export class EspecePersonnage {
     nom: string,
     taille: string,
     maitrises: Maitrise,
-    langues: Array<string>,
-    traits: Array<string>,
+    langues: Langues,
+    traits: Traits,
     bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>,
   ) {
     this.id = id;
@@ -43,11 +45,11 @@ export class EspecePersonnage {
     return this.maitrises;
   }
 
-  getLangues(): Array<string> {
+  getLangues(): Langues {
     return this.langues;
   }
 
-  getTraits(): Array<string> {
+  getTraits(): Traits {
     return this.traits;
   }
 

@@ -7,7 +7,7 @@ export type JSONAlignement = {
   }>;
 };
 
-export type JSONAllEspece = {
+export type JSONEspece = {
   count: number;
   results: Array<{
     index: string;
@@ -50,6 +50,8 @@ export type JSONEspeceById = {
   size_description: string;
   starting_proficiencies: Array<{
     index: string;
+    name: string;
+    url: string;
   }>;
   starting_proficiency_options: {
     choose: number;

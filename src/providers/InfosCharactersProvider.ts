@@ -1,6 +1,6 @@
 import { EspecePersonnage } from "models/EspecePersonnage";
 import { InfosCharactersAdapter } from "../adapters/InfosCharactersAdapter";
-import { JSONAlignement, JSONAllEspece, JSONEspeceById } from "adapters/JSONtype";
+import { JSONAlignement, JSONEspece, JSONEspeceById } from "adapters/JSONtype";
 
 export class InfosCharactersProvider {
   private baseUrl: string = "https://www.dnd5eapi.co/api";
@@ -24,9 +24,9 @@ export class InfosCharactersProvider {
         throw new Error(`Erreur de l'API D&D: ${response.status}`);
       }
 
-      const json = (await response.json()) as JSONAllEspece;
+      const json = (await response.json()) as JSONEspece;
 
-      const especesAllIds = InfosCharactersAdapter.fromApiResponseEspece(json);
+      const especesAllIds = json.results.map((espece) => espece.index);
 
       const especes: (EspecePersonnage | undefined)[] = [];
 

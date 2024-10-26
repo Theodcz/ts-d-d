@@ -1,21 +1,12 @@
 import { Alignement } from "../models/Alignement";
-import { JSONAlignement, JSONAllEspece, JSONEspeceById } from "./JSONtype";
+import { JSONAlignement, JSONEspeceById } from "./JSONtype";
 import { Moral, Order } from "../models/Alignement";
 import { EspecePersonnage } from "../models/EspecePersonnage";
 import { Maitrise } from "../models/Maitrise";
+import { Langues } from "../models/Langues";
+import { Traits } from "../models/Traits";
 
 export class InfosCharactersAdapter {
-  // transforme JSON de l'api en Model
-  static fromApiResponseEspece(json: JSONAllEspece): string[] {
-    const espece: string[] = [];
-
-    json.results.forEach((result) => {
-      espece.push(result.index);
-    });
-
-    return espece;
-  }
-
   static fromApiResponseEspeceById(json: JSONEspeceById): EspecePersonnage {
     // partie maîtrises
     const maitrisesDeDepart: { index: string[] } = { index: [] };
@@ -32,7 +23,25 @@ export class InfosCharactersAdapter {
 
     const maitrises = new Maitrise(maitrisesDeDepart, maitrisesADefinir);
 
-    return new EspecePersonnage(json.index, json.name, json.size, maitrises, [], [], []);
+    // parties langues
+    const languesDeDepart: { index: string[] } = { index: [] };
+    const languesADefinir: { choose: number; options: string[] } = { choose: 0, options: [] };
+
+    if (json.starting_proficiencies) {
+      languesDeDepart.index = json.languages.map((langue) => langue.index);
+    }
+
+    if (json.language_options) {
+      languesADefinir.choose = json.language_options.choose;
+      languesADefinir.options = json.language_options.from.options.map((option) => option.item.index);
+    }
+
+    // parties traits
+    const traits: Traits = new Traits(json.traits.map((trait) => trait.name));
+
+    const langues = new Langues(languesDeDepart, languesADefinir);
+
+    return new EspecePersonnage(json.index, json.name, json.size, maitrises, langues, traits, []);
   }
 
   static fromApiResponseAlignement(json: JSONAlignement): string[] {

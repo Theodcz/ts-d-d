@@ -1,7 +1,6 @@
 export class Maitrise {
-  maitriseDeDepart: {
-    index: string[];
-  };
+  maitriseDeDepart: { index: string[] };
+
   maitriseADefinir: {
     choose: number;
     options: string[];

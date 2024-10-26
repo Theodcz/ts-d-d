@@ -1,25 +1,28 @@
 import { Alignement } from "../models/Alignement";
-import { JSONAlignement, JSONEspece } from "./JSONtype";
+import { JSONAlignement, JSONAllEspece, JSONEspeceById } from "./JSONtype";
 import { Moral, Order } from "../models/Alignement";
+import { EspecePersonnage } from "../models/EspecePersonnage";
 
 export class InfosCharactersAdapter {
   // transforme JSON de l'api en Model
-  static fromApiResponseEspece(json: JSONEspece): string[] {
+  static fromApiResponseEspece(json: JSONAllEspece): string[] {
     const espece: string[] = [];
 
     json.results.forEach((result) => {
-      espece.push(result.name);
+      espece.push(result.index);
     });
 
     return espece;
+  }
+
+  static fromApiResponseEspeceById(json: JSONEspeceById): EspecePersonnage {
+    return new EspecePersonnage(json.index, json.name, json.size, [], [], [], []);
   }
 
   static fromApiResponseAlignement(json: JSONAlignement): string[] {
     const alignements: string[] = [];
 
     json.results.forEach((result) => {
-      // console.log(result);
-
       if (result.index == "neutral") {
         alignements.push(new Alignement(Moral.Neutre, Order.Neutre).getAlignement());
       }

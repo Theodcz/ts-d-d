@@ -12,7 +12,6 @@ export class InfosCharactersController {
   async getCharacterInfo(res: Response) {
     try {
       const characterInfo = await this.characterProvider.getCharacterCreationInfo();
-      // console.log("get" + characterInfo);
       res.json(characterInfo);
     } catch {
       res.status(500).json({ message: "Erreur interne du serveur" });

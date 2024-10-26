@@ -1,21 +1,59 @@
-class EspecePersonnage {
-    private int id;
-    private string nom;
-    private int taille;
-    private SousEspece sousEspece;
-    private Maitrise maitrises;
-    private Langue langues;
-    private Trait traits;
-    private Bonus bonus;
+export class EspecePersonnage {
+  private id: string;
+  private nom: string;
+  private taille: string;
+  private maitrises: Array<string>;
+  private langues: Array<string>;
+  private traits: Array<string>;
+  private bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>;
 
-    constructor(int id, string nom, int taille, SousEspece sousEspece, Maitrise maitrises, Langue langues, Trait traits, Bonus bonus) {
-        this.id = id;
-        this.nom = nom;
-        this.taille = taille;
-        this.sousEspece = sousEspece;
-        this.maitrises = maitrises;
-        this.langues = langues;
-        this.traits = traits;
-        this.bonus = bonus;
-    }
+  constructor(
+    id: string,
+    nom: string,
+    taille: string,
+    maitrises: Array<string>,
+    langues: Array<string>,
+    traits: Array<string>,
+    bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>,
+  ) {
+    this.id = id;
+    this.nom = nom;
+    this.taille = taille;
+    this.maitrises = maitrises;
+    this.langues = langues;
+    this.traits = traits;
+    this.bonusCaracteristiques = bonusCaracteristiques;
+  }
+
+  getId(): string {
+    return this.id;
+  }
+
+  getNom(): string {
+    return this.nom;
+  }
+
+  getTaille(): string {
+    return this.taille;
+  }
+
+  getMaitrises(): Array<string> {
+    return this.maitrises;
+  }
+
+  getLangues(): Array<string> {
+    return this.langues;
+  }
+
+  getTraits(): Array<string> {
+    return this.traits;
+  }
+
+  getBonusCaracteristiques(): Array<{ caracteristique: string; bonus: number }> {
+    return this.bonusCaracteristiques;
+  }
+
+  getBonusCaracteristique(caracteristique: string): number {
+    return this.bonusCaracteristiques.find((bonus) => bonus.caracteristique === caracteristique)?.bonus || 0;
+  }
 }

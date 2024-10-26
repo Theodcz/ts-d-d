@@ -1,6 +1,7 @@
 import { Maitrise } from "./Maitrise";
 import { Langues } from "./Langues";
 import { Traits } from "./Traits";
+import { Bonus } from "./Bonus";
 
 export class EspecePersonnage {
   private id: string;
@@ -9,7 +10,7 @@ export class EspecePersonnage {
   private maitrises: Maitrise;
   private langues: Langues;
   private traits: Traits;
-  private bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>;
+  private bonus: Bonus;
 
   constructor(
     id: string,
@@ -18,7 +19,7 @@ export class EspecePersonnage {
     maitrises: Maitrise,
     langues: Langues,
     traits: Traits,
-    bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>,
+    bonus: Bonus,
   ) {
     this.id = id;
     this.nom = nom;
@@ -26,7 +27,7 @@ export class EspecePersonnage {
     this.maitrises = maitrises;
     this.langues = langues;
     this.traits = traits;
-    this.bonusCaracteristiques = bonusCaracteristiques;
+    this.bonus = bonus;
   }
 
   getId(): string {
@@ -53,11 +54,7 @@ export class EspecePersonnage {
     return this.traits;
   }
 
-  getBonusCaracteristiques(): Array<{ caracteristique: string; bonus: number }> {
-    return this.bonusCaracteristiques;
-  }
-
-  getBonusCaracteristique(caracteristique: string): number {
-    return this.bonusCaracteristiques.find((bonus) => bonus.caracteristique === caracteristique)?.bonus || 0;
+  getBonus(): Bonus {
+    return this.bonus;
   }
 }

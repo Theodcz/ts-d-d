@@ -5,43 +5,66 @@ import { EspecePersonnage } from "../models/EspecePersonnage";
 import { Maitrise } from "../models/Maitrise";
 import { Langues } from "../models/Langues";
 import { Traits } from "../models/Traits";
+import { Bonus } from "../models/Bonus";
 
 export class InfosCharactersAdapter {
   static fromApiResponseEspeceById(json: JSONEspeceById): EspecePersonnage {
-    // partie maîtrises
-    const maitrisesDeDepart: { index: string[] } = { index: [] };
-    const maitrisesADefinir: { choose: number; options: string[] } = { choose: 0, options: [] };
+    // partie maîtrises, check si il y a des maitrises de départ et des maitrises à définir
+    const maitrisesDeDepart: { name: string }[] = [];
+    const maitrisesADefinir: { choose: number; options: string[] }[] = [];
 
     if (json.starting_proficiencies) {
-      maitrisesDeDepart.index = json.starting_proficiencies.map((maitrise) => maitrise.index);
+      maitrisesDeDepart.push(...json.starting_proficiencies.map((maitrise) => ({ name: maitrise.name })));
     }
 
     if (json.starting_proficiency_options) {
-      maitrisesADefinir.choose = json.starting_proficiency_options.choose;
-      maitrisesADefinir.options = json.starting_proficiency_options.from.options.map((option) => option.item.index);
+      maitrisesADefinir.push({
+        choose: json.starting_proficiency_options.choose,
+        options: json.starting_proficiency_options.from.options.map((option) => option.item.name),
+      });
     }
+
+    // création de l'objet maitrise
 
     const maitrises = new Maitrise(maitrisesDeDepart, maitrisesADefinir);
 
-    // parties langues
-    const languesDeDepart: { index: string[] } = { index: [] };
-    const languesADefinir: { choose: number; options: string[] } = { choose: 0, options: [] };
+    // parties langues, check si il y a des langues de départ et des langues à définir
+    const languesDeDepart: { name: string }[] = [];
+    const languesADefinir: { choose: number; options: string[] }[] = [];
 
-    if (json.starting_proficiencies) {
-      languesDeDepart.index = json.languages.map((langue) => langue.index);
+    if (json.languages) {
+      languesDeDepart.push(...json.languages.map((langue) => ({ name: langue.name })));
     }
 
     if (json.language_options) {
-      languesADefinir.choose = json.language_options.choose;
-      languesADefinir.options = json.language_options.from.options.map((option) => option.item.index);
+      languesADefinir.push({
+        choose: json.language_options.choose,
+        options: json.language_options.from.options.map((option) => option.item.name),
+      });
     }
 
+    const langues: Langues = new Langues(languesDeDepart, languesADefinir);
+
     // parties traits
-    const traits: Traits = new Traits(json.traits.map((trait) => trait.name));
+    const traits: { name: string }[] = [];
 
-    const langues = new Langues(languesDeDepart, languesADefinir);
+    json.traits.forEach((trait) => {
+      traits.push({ name: trait.name });
+    });
 
-    return new EspecePersonnage(json.index, json.name, json.size, maitrises, langues, traits, []);
+    // création de l'objet traits
+    const traitsObj = new Traits(traits);
+
+    // parties bonus
+    const abilityBonus: { scoreAbilite: string; bonus: number }[] = [];
+
+    json.ability_bonuses.forEach((bonus) => {
+      abilityBonus.push({ scoreAbilite: bonus.ability_score.name, bonus: bonus.bonus });
+    });
+
+    const bonus = new Bonus(abilityBonus);
+
+    return new EspecePersonnage(json.index, json.name, json.size, maitrises, langues, traitsObj, bonus);
   }
 
   static fromApiResponseAlignement(json: JSONAlignement): string[] {

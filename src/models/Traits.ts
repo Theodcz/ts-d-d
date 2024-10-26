@@ -1,11 +1,13 @@
 export class Traits {
-  private traits: string[];
+  private traits: {
+    name: string;
+  }[] = [];
 
-  constructor(traits: string[]) {
+  constructor(traits: { name: string }[]) {
     this.traits = traits;
   }
 
-  getTraits(): string[] {
+  getTraits(): { name: string }[] {
     return this.traits;
   }
 }

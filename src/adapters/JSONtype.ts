@@ -48,7 +48,9 @@ export type JSONEspeceById = {
   age: string;
   size: string;
   size_description: string;
-  starting_proficiencies: [];
+  starting_proficiencies: Array<{
+    index: string;
+  }>;
   starting_proficiency_options: {
     choose: number;
     type: string;

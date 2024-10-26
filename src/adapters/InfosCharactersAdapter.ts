@@ -2,6 +2,7 @@ import { Alignement } from "../models/Alignement";
 import { JSONAlignement, JSONAllEspece, JSONEspeceById } from "./JSONtype";
 import { Moral, Order } from "../models/Alignement";
 import { EspecePersonnage } from "../models/EspecePersonnage";
+import { Maitrise } from "../models/Maitrise";
 
 export class InfosCharactersAdapter {
   // transforme JSON de l'api en Model
@@ -16,7 +17,22 @@ export class InfosCharactersAdapter {
   }
 
   static fromApiResponseEspeceById(json: JSONEspeceById): EspecePersonnage {
-    return new EspecePersonnage(json.index, json.name, json.size, [], [], [], []);
+    // partie maîtrises
+    const maitrisesDeDepart: { index: string[] } = { index: [] };
+    const maitrisesADefinir: { choose: number; options: string[] } = { choose: 0, options: [] };
+
+    if (json.starting_proficiencies) {
+      maitrisesDeDepart.index = json.starting_proficiencies.map((maitrise) => maitrise.index);
+    }
+
+    if (json.starting_proficiency_options) {
+      maitrisesADefinir.choose = json.starting_proficiency_options.choose;
+      maitrisesADefinir.options = json.starting_proficiency_options.from.options.map((option) => option.item.index);
+    }
+
+    const maitrises = new Maitrise(maitrisesDeDepart, maitrisesADefinir);
+
+    return new EspecePersonnage(json.index, json.name, json.size, maitrises, [], [], []);
   }
 
   static fromApiResponseAlignement(json: JSONAlignement): string[] {

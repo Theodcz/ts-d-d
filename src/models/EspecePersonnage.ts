@@ -1,8 +1,10 @@
+import { Maitrise } from "./Maitrise";
+
 export class EspecePersonnage {
   private id: string;
   private nom: string;
   private taille: string;
-  private maitrises: Array<string>;
+  private maitrises: Maitrise;
   private langues: Array<string>;
   private traits: Array<string>;
   private bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>;
@@ -11,7 +13,7 @@ export class EspecePersonnage {
     id: string,
     nom: string,
     taille: string,
-    maitrises: Array<string>,
+    maitrises: Maitrise,
     langues: Array<string>,
     traits: Array<string>,
     bonusCaracteristiques: Array<{ caracteristique: string; bonus: number }>,
@@ -37,7 +39,7 @@ export class EspecePersonnage {
     return this.taille;
   }
 
-  getMaitrises(): Array<string> {
+  getMaitrises(): Maitrise {
     return this.maitrises;
   }
 

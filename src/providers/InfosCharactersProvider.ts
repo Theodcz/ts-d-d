@@ -49,7 +49,6 @@ export class InfosCharactersProvider {
       }
 
       const json = (await response.json()) as JSONEspeceById;
-      console.log(json);
 
       const espece = InfosCharactersAdapter.fromApiResponseEspeceById(json);
 

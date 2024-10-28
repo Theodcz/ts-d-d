@@ -1,11 +1,12 @@
 import { Alignement } from "../models/Alignement";
-import { JSONAlignement, JSONEspeceById } from "./JSONtype";
+import { JSONAlignement, JSONEspeceById, JSONClasseById } from "./JSONtype";
 import { Moral, Order } from "../models/Alignement";
 import { EspecePersonnage } from "../models/EspecePersonnage";
 import { Maitrise } from "../models/Maitrise";
 import { Langues } from "../models/Langues";
 import { Traits } from "../models/Traits";
 import { Bonus } from "../models/Bonus";
+import { ClassePersonnage } from "models/ClassePersonnage";
 
 export class InfosCharactersAdapter {
   static fromApiResponseEspeceById(json: JSONEspeceById): EspecePersonnage {
@@ -65,6 +66,25 @@ export class InfosCharactersAdapter {
     const bonus = new Bonus(abilityBonus);
 
     return new EspecePersonnage(json.index, json.name, json.size, maitrises, langues, traitsObj, bonus);
+  }
+
+  static fromApiResponseClasse(json: JSONClasseById): ClassePersonnage {
+    // parties maitrises
+    const maitrisesDeDepart: { name: string }[] = [];
+    const maitrisesADefinir: { choose: number; options: string[] }[] = [];
+
+    if (json.proficiencies) {
+      maitrisesDeDepart.push(...json.proficiencies.map((maitrise) => ({ name: maitrise.name })));
+    }
+
+    if (json.proficiency_choices) {
+      maitrisesADefinir.push({
+        choose: json.proficiency_choices.map((choice) => choice.choose),
+        options: json.proficiency_choices.map((option) => option.from.options.map((option) => option.item.name)),
+      });
+    }
+
+    return test;
   }
 
   static fromApiResponseAlignement(json: JSONAlignement): string[] {

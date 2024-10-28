@@ -1,6 +1,7 @@
 import { EspecePersonnage } from "models/EspecePersonnage";
+import { ClassePersonnage } from "models/ClassePersonnage";
 import { InfosCharactersAdapter } from "../adapters/InfosCharactersAdapter";
-import { JSONAlignement, JSONEspece, JSONEspeceById } from "adapters/JSONtype";
+import { JSONAlignement, JSONClasse, JSONClasseById, JSONEspece, JSONEspeceById } from "adapters/JSONtype";
 
 export class InfosCharactersProvider {
   private baseUrl: string = "https://www.dnd5eapi.co/api";
@@ -53,6 +54,47 @@ export class InfosCharactersProvider {
       const espece = InfosCharactersAdapter.fromApiResponseEspeceById(json);
 
       return espece;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getAllCharacterClasse() {
+    try {
+      const response = await fetch(`${this.baseUrl}/classes`);
+      if (!response.ok) {
+        throw new Error(`Erreur de l'API D&D: ${response.status}`);
+      }
+
+      const json = (await response.json()) as JSONClasse;
+
+      const classesAllIds = json.results.map((classe) => classe.index);
+
+      const classes: (ClassePersonnage | undefined)[] = [];
+
+      classesAllIds.forEach(async (id) => {
+        const classe = await this.getCharacterClasseById(id);
+        classes.push(classe);
+      });
+
+      return classes;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getCharacterClasseById(id: string) {
+    try {
+      const response = await fetch(`${this.baseUrl}/classes/${id}`);
+      if (!response.ok) {
+        throw new Error(`Erreur de l'API D&D: ${response.status}`);
+      }
+
+      const json = (await response.json()) as JSONClasseById;
+
+      const classe = InfosCharactersAdapter.fromApiResponseClasse(json);
+
+      return classe;
     } catch (error) {
       console.error(error);
     }

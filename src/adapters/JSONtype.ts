@@ -16,6 +16,15 @@ export type JSONEspece = {
   }>;
 };
 
+export type JSONClasse = {
+  count: number;
+  results: Array<{
+    index: string;
+    name: string;
+    url: string;
+  }>;
+};
+
 export type JSONEspeceById = {
   index: string;
   name: string;
@@ -95,5 +104,95 @@ export type JSONEspeceById = {
     url: string;
   }>;
   subraces: [];
+  url: string;
+};
+
+export type JSONClasseById = {
+  index: string;
+  name: string;
+  hit_die: number;
+  proficiency_choices: Array<{
+    desc: string;
+    choose: number;
+    type: string;
+    from: {
+      option_set_type: string;
+      options: Array<{
+        option_type: string;
+        item: {
+          index: string;
+          name: string;
+          url: string;
+        };
+      }>;
+    };
+  }>;
+  proficiencies: Array<{
+    index: string;
+    name: string;
+    url: string;
+  }>;
+  saving_throws: Array<{
+    index: string;
+    name: string;
+    url: string;
+  }>;
+  starting_equipment: Array<{
+    equipment: {
+      index: string;
+      name: string;
+      url: string;
+    };
+    quantity: number;
+  }>;
+  starting_equipment_options: Array<{
+    desc: string;
+    choose: number;
+    type: string;
+    from: {
+      option_set_type: string;
+      options: Array<{
+        option_type: string;
+        counted_reference: {
+          count: number;
+          of: {
+            index: string;
+            name: string;
+            url: string;
+          };
+        };
+      }>;
+    };
+  }>;
+  class_levels: string;
+  multi_classing: {
+    prerequisites: Array<{
+      ability_score: {
+        index: string;
+        name: string;
+        url: string;
+      };
+      minimum_score: number;
+    }>;
+    proficiencies: [];
+  };
+  subclasses: Array<{
+    index: string;
+    name: string;
+    url: string;
+  }>;
+  spellcasting: {
+    level: number;
+    spellcasting_ability: {
+      index: string;
+      name: string;
+      url: string;
+    };
+    info: Array<{
+      name: string;
+      desc: string[];
+    }>;
+  };
+  spells: string;
   url: string;
 };

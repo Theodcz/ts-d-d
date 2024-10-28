@@ -125,44 +125,40 @@ export class InfosCharactersAdapter {
     return new ClassePersonnage(json.index, json.name, maitrises, jetSauvegardes, sorts);
   }
 
-  static fromApiResponseAlignement(json: JSONAlignement): string[] {
-    const alignements: string[] = [];
+  static fromApiResponseAlignement(json: JSONAlignement): Alignement[] {
+    const alignements: Alignement[] = [];
 
     json.results.forEach((result) => {
-      if (result.index == "neutral") {
-        alignements.push(new Alignement(Moral.Neutre, Order.Neutre).getAlignement());
-      }
-
-      if (result.index == "lawful-good") {
-        alignements.push(new Alignement(Moral.Bon, Order.Loyal).getAlignement());
-      }
-
-      if (result.index == "lawful-neutral") {
-        alignements.push(new Alignement(Moral.Neutre, Order.Loyal).getAlignement());
-      }
-
-      if (result.index == "lawful-evil") {
-        alignements.push(new Alignement(Moral.Mauvais, Order.Loyal).getAlignement());
-      }
-
-      if (result.index == "neutral-good") {
-        alignements.push(new Alignement(Moral.Bon, Order.Neutre).getAlignement());
-      }
-
-      if (result.index == "neutral-evil") {
-        alignements.push(new Alignement(Moral.Mauvais, Order.Neutre).getAlignement());
-      }
-
-      if (result.index == "chaotic-good") {
-        alignements.push(new Alignement(Moral.Bon, Order.Chaotique).getAlignement());
-      }
-
-      if (result.index == "chaotic-neutral") {
-        alignements.push(new Alignement(Moral.Neutre, Order.Chaotique).getAlignement());
-      }
-
-      if (result.index == "chaotic-evil") {
-        alignements.push(new Alignement(Moral.Mauvais, Order.Chaotique).getAlignement());
+      switch (result.index) {
+        case "neutral":
+          alignements.push(new Alignement(Moral.Neutre, Order.Neutre));
+          break;
+        case "lawful-good":
+          alignements.push(new Alignement(Moral.Bon, Order.Loyal));
+          break;
+        case "lawful-neutral":
+          alignements.push(new Alignement(Moral.Neutre, Order.Loyal));
+          break;
+        case "lawful-evil":
+          alignements.push(new Alignement(Moral.Mauvais, Order.Loyal));
+          break;
+        case "neutral-good":
+          alignements.push(new Alignement(Moral.Bon, Order.Neutre));
+          break;
+        case "neutral-evil":
+          alignements.push(new Alignement(Moral.Mauvais, Order.Neutre));
+          break;
+        case "chaotic-good":
+          alignements.push(new Alignement(Moral.Bon, Order.Chaotique));
+          break;
+        case "chaotic-neutral":
+          alignements.push(new Alignement(Moral.Neutre, Order.Chaotique));
+          break;
+        case "chaotic-evil":
+          alignements.push(new Alignement(Moral.Mauvais, Order.Chaotique));
+          break;
+        default:
+          console.log(`Alignement non reconnu: ${result.index}`);
       }
     });
 

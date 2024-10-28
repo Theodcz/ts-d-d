@@ -6,7 +6,9 @@ import { Maitrise } from "../models/Maitrise";
 import { Langues } from "../models/Langues";
 import { Traits } from "../models/Traits";
 import { Bonus } from "../models/Bonus";
-import { ClassePersonnage } from "models/ClassePersonnage";
+import { ClassePersonnage } from "../models/ClassePersonnage";
+import { JetSauvegarde } from "../models/JetSauvegarde";
+import { Sort } from "../models/Sort";
 
 export class InfosCharactersAdapter {
   static fromApiResponseEspeceById(json: JSONEspeceById): EspecePersonnage {
@@ -79,12 +81,36 @@ export class InfosCharactersAdapter {
 
     if (json.proficiency_choices) {
       maitrisesADefinir.push({
-        choose: json.proficiency_choices.map((choice) => choice.choose),
-        options: json.proficiency_choices.map((option) => option.from.options.map((option) => option.item.name)),
+        choose: json.proficiency_choices[0].choose,
+        options: json.proficiency_choices[0].from.options.map((option) => option.item.name),
       });
     }
 
-    return test;
+    const maitrises = new Maitrise(maitrisesDeDepart, maitrisesADefinir);
+
+    // parties jets sauvegardes
+    const jetSauvegardes: JetSauvegarde[] = [];
+
+    if (json.saving_throws) {
+      json.saving_throws.forEach((savingThrow) => {
+        // Vérifier si le nom existe dans l'énum JetSauvegarde
+        if (savingThrow.name in JetSauvegarde) {
+          // Ajouter la valeur correspondante de l'énum JetSauvegarde au tableau
+          jetSauvegardes.push(JetSauvegarde[savingThrow.name as keyof typeof JetSauvegarde]);
+        }
+      });
+    }
+
+    // parties sorts
+    const sortLancement: { name: string }[] = [];
+
+    if (json.spellcasting) {
+      sortLancement.push({ name: json.spellcasting.spellcasting_ability.name });
+    }
+
+    const sorts = new Sort(sortLancement, "");
+
+    return new ClassePersonnage(json.index, json.name, maitrises, jetSauvegardes, sorts);
   }
 
   static fromApiResponseAlignement(json: JSONAlignement): string[] {

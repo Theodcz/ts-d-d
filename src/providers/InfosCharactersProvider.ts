@@ -13,6 +13,7 @@ export class InfosCharactersProvider {
     return {
       personnagesDisponibles: {
         especes: await this.getAllCharacterEspece(),
+        classes: await this.getAllCharacterClasse(),
         alignements: await this.getCharacterAlignement(),
       },
     };
@@ -76,6 +77,8 @@ export class InfosCharactersProvider {
         const classe = await this.getCharacterClasseById(id);
         classes.push(classe);
       });
+
+      console.log(classes);
 
       return classes;
     } catch (error) {

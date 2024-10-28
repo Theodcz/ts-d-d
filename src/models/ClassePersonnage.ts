@@ -1,33 +1,23 @@
 import { JetSauvegarde } from "./JetSauvegarde";
+import { Maitrise } from "./Maitrise";
+import { Sort } from "./Sort";
 
 export class ClassePersonnage {
-  private id: number;
+  private id: string;
   private nom: string;
-  private maitrises: string[];
-  private maitrisesAChoisir: number;
-  private jetsDeSauvegarde: JetSauvegarde;
-  private caractSort: string;
-  private sortsNiveau0: string[];
+  private maitrises: Maitrise;
+  private jetsDeSauvegarde: JetSauvegarde[];
+  private sort: Sort;
 
-  constructor(
-    id: number,
-    nom: string,
-    maitrises: string[],
-    maitrisesAChoisir: number,
-    jetsDeSauvegarde: JetSauvegarde,
-    caractSort: string,
-    sortsNiveau0: string[],
-  ) {
+  constructor(id: string, nom: string, maitrises: Maitrise, jetsDeSauvegarde: JetSauvegarde[], sort: Sort) {
     this.id = id;
     this.nom = nom;
     this.maitrises = maitrises;
-    this.maitrisesAChoisir = maitrisesAChoisir;
     this.jetsDeSauvegarde = jetsDeSauvegarde;
-    this.caractSort = caractSort;
-    this.sortsNiveau0 = sortsNiveau0;
+    this.sort = sort;
   }
 
-  public getId(): number {
+  public getId(): string {
     return this.id;
   }
 
@@ -35,23 +25,15 @@ export class ClassePersonnage {
     return this.nom;
   }
 
-  public getMaitrises(): string[] {
+  public getMaitrises(): Maitrise {
     return this.maitrises;
   }
 
-  public getMaitrisesAChoisir(): number {
-    return this.maitrisesAChoisir;
-  }
-
-  public getJetsDeSauvegarde(): JetSauvegarde {
+  public getJetsDeSauvegarde(): JetSauvegarde[] {
     return this.jetsDeSauvegarde;
   }
 
-  public getCaractSort(): string {
-    return this.caractSort;
-  }
-
-  public getSortsNiveau0(): string[] {
-    return this.sortsNiveau0;
+  public getSort(): Sort {
+    return this.sort;
   }
 }

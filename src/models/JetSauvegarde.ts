@@ -1,8 +1,8 @@
 export enum JetSauvegarde {
-  FOR = "FOR",
-  DEX = "DEX",
-  CON = "CON",
-  INT = "INT",
-  SAG = "SAG",
-  CHA = "CHA",
+  FORCE = "STR",
+  DEXTERITE = "DEX",
+  CONSTITUTION = "CON",
+  INTELLIGENCE = "INT",
+  SAGESSE = "WIS",
+  CHARISME = "CHA",
 }

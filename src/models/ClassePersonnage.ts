@@ -36,4 +36,8 @@ export class ClassePersonnage {
   public getSort(): Sort {
     return this.sort;
   }
+
+  public setSord(sort: Sort) {
+    this.sort = sort;
+  }
 }

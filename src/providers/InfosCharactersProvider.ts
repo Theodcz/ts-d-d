@@ -1,7 +1,14 @@
 import { EspecePersonnage } from "models/EspecePersonnage";
 import { ClassePersonnage } from "models/ClassePersonnage";
 import { InfosCharactersAdapter } from "../adapters/InfosCharactersAdapter";
-import { JSONAlignement, JSONClasse, JSONClasseById, JSONEspece, JSONEspeceById } from "adapters/JSONtype";
+import {
+  JSONAlignement,
+  JSONClasse,
+  JSONClasseById,
+  JSONClasseSort,
+  JSONEspece,
+  JSONEspeceById,
+} from "adapters/JSONtype";
 
 export class InfosCharactersProvider {
   private baseUrl: string = "https://www.dnd5eapi.co/api";
@@ -95,7 +102,15 @@ export class InfosCharactersProvider {
 
       const json = (await response.json()) as JSONClasseById;
 
-      const classe = InfosCharactersAdapter.fromApiResponseClasse(json);
+      const responseSort = await fetch(`${this.baseUrl}/classes/${id}/spells`);
+
+      if (!responseSort.ok) {
+        throw new Error(`Erreur de l'API D&D: ${responseSort.status}`);
+      }
+
+      const jsonSort = (await responseSort.json()) as JSONClasseSort;
+
+      const classe = InfosCharactersAdapter.fromApiResponseClasse(json, jsonSort);
 
       return classe;
     } catch (error) {

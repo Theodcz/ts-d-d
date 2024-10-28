@@ -1,5 +1,5 @@
 import { Alignement } from "../models/Alignement";
-import { JSONAlignement, JSONEspeceById, JSONClasseById } from "./JSONtype";
+import { JSONAlignement, JSONEspeceById, JSONClasseById, JSONClasseSort } from "./JSONtype";
 import { Moral, Order } from "../models/Alignement";
 import { EspecePersonnage } from "../models/EspecePersonnage";
 import { Maitrise } from "../models/Maitrise";
@@ -70,7 +70,7 @@ export class InfosCharactersAdapter {
     return new EspecePersonnage(json.index, json.name, json.size, maitrises, langues, traitsObj, bonus);
   }
 
-  static fromApiResponseClasse(json: JSONClasseById): ClassePersonnage {
+  static fromApiResponseClasse(json: JSONClasseById, jsonSort: JSONClasseSort): ClassePersonnage {
     // parties maitrises
     const maitrisesDeDepart: { name: string }[] = [];
     const maitrisesADefinir: { choose: number; options: string[] }[] = [];
@@ -93,22 +93,34 @@ export class InfosCharactersAdapter {
 
     if (json.saving_throws) {
       json.saving_throws.forEach((savingThrow) => {
-        // Vérifier si le nom existe dans l'énum JetSauvegarde
-        if (savingThrow.name in JetSauvegarde) {
-          // Ajouter la valeur correspondante de l'énum JetSauvegarde au tableau
-          jetSauvegardes.push(JetSauvegarde[savingThrow.name as keyof typeof JetSauvegarde]);
+        const jetKey = Object.keys(JetSauvegarde).find(
+          (key) => JetSauvegarde[key as keyof typeof JetSauvegarde] === savingThrow.name,
+        );
+
+        if (jetKey) {
+          jetSauvegardes.push(JetSauvegarde[jetKey as keyof typeof JetSauvegarde]);
+        } else {
+          console.log(savingThrow.name + " n'est pas une clé valide dans JetSauvegarde.");
         }
       });
     }
 
     // parties sorts
     const sortLancement: { name: string }[] = [];
+    const sortNiveau0: { name: string }[] = [];
 
     if (json.spellcasting) {
       sortLancement.push({ name: json.spellcasting.spellcasting_ability.name });
     }
 
-    const sorts = new Sort(sortLancement, "");
+    // insere uniquement les sorts de niveau 0
+    jsonSort.results.forEach((sort) => {
+      if (sort.level == 0) {
+        sortNiveau0.push({ name: sort.name });
+      }
+    });
+
+    const sorts = new Sort(sortLancement, sortNiveau0);
 
     return new ClassePersonnage(json.index, json.name, maitrises, jetSauvegardes, sorts);
   }

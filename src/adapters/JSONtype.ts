@@ -196,3 +196,13 @@ export type JSONClasseById = {
   spells: string;
   url: string;
 };
+
+export type JSONClasseSort = {
+  count: number;
+  results: Array<{
+    index: string;
+    name: string;
+    level: number;
+    url: string;
+  }>;
+};

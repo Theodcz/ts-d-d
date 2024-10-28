@@ -133,4 +133,9 @@ export class InfosCharactersProvider {
       console.error(error);
     }
   }
+
+  async addCharacterCreationInfo(characterInfo: any) {
+    // Créez une fiche personnnage
+    // Sauvegardez la fiche personnage
+  }
 }

@@ -103,7 +103,61 @@ export type JSONEspeceById = {
     name: string;
     url: string;
   }>;
-  subraces: [];
+  subraces: Array<{
+    index: string;
+    name: string;
+    url: string;
+  }>;
+  url: string;
+};
+
+export type JSONSubEspeceById = {
+  index: string;
+  name: string;
+  race: {
+    index: string;
+    name: string;
+    url: string;
+  };
+  desc: string;
+  ability_bonuses: {
+    ability_score: {
+      index: string;
+      name: string;
+      url: string;
+    };
+    bonus: number;
+  }[];
+  starting_proficiencies: {
+    index: string;
+    name: string;
+    url: string;
+  }[];
+  languages: Array<{
+    index: string;
+    name: string;
+    url: string;
+  }>;
+  language_options: {
+    choose: number;
+    from: {
+      option_set_type: string;
+      options: {
+        option_type: string;
+        item: {
+          index: string;
+          name: string;
+          url: string;
+        };
+      }[];
+    };
+    type: string;
+  };
+  racial_traits: {
+    index: string;
+    name: string;
+    url: string;
+  }[];
   url: string;
 };
 

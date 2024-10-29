@@ -8,6 +8,7 @@ import {
   JSONClasseSort,
   JSONEspece,
   JSONEspeceById,
+  JSONSubEspeceById,
 } from "adapters/JSONtype";
 
 export class InfosCharactersProvider {
@@ -59,7 +60,23 @@ export class InfosCharactersProvider {
 
       const json = (await response.json()) as JSONEspeceById;
 
-      const espece = InfosCharactersAdapter.fromApiResponseEspeceById(json);
+      const subRaces = json.subraces.map((subRace) => subRace.index);
+
+      if (subRaces.length === 0) {
+        const espece = InfosCharactersAdapter.fromApiResponseEspeceByIdNoSubRaces(json);
+
+        return espece;
+      }
+
+      const responseSubRace = await fetch(`${this.baseUrl}/subraces/${subRaces[0]}`);
+
+      if (!responseSubRace.ok) {
+        throw new Error(`Erreur de l'API D&D: ${responseSubRace.status}`);
+      }
+
+      const jsonSubRace = (await responseSubRace.json()) as JSONSubEspeceById;
+
+      const espece = InfosCharactersAdapter.fromApiResponseEspeceById(json, jsonSubRace);
 
       return espece;
     } catch (error) {
@@ -134,8 +151,10 @@ export class InfosCharactersProvider {
     }
   }
 
+  /*
+
   async addCharacterCreationInfo(characterInfo: any) {
     // Créez une fiche personnnage
     // Sauvegardez la fiche personnage
-  }
+  } */
 }

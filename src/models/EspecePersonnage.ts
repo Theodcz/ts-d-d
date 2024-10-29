@@ -2,11 +2,13 @@ import { Maitrise } from "./Maitrise";
 import { Langues } from "./Langues";
 import { Traits } from "./Traits";
 import { Bonus } from "./Bonus";
+import { SousEspece } from "./SousEspece";
 
 export class EspecePersonnage {
   private id: string;
   private nom: string;
   private taille: string;
+  private sousEspeces: SousEspece;
   private maitrises: Maitrise;
   private langues: Langues;
   private traits: Traits;
@@ -16,6 +18,7 @@ export class EspecePersonnage {
     id: string,
     nom: string,
     taille: string,
+    sousEspeces: SousEspece,
     maitrises: Maitrise,
     langues: Langues,
     traits: Traits,
@@ -24,6 +27,7 @@ export class EspecePersonnage {
     this.id = id;
     this.nom = nom;
     this.taille = taille;
+    this.sousEspeces = sousEspeces;
     this.maitrises = maitrises;
     this.langues = langues;
     this.traits = traits;
@@ -40,6 +44,10 @@ export class EspecePersonnage {
 
   getTaille(): string {
     return this.taille;
+  }
+
+  getSousEspeces(): SousEspece {
+    return this.sousEspeces;
   }
 
   getMaitrises(): Maitrise {

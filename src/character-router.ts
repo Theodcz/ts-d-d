@@ -8,6 +8,7 @@ characterRouter.get("/getInfosFichePersonnage", (_request: Request, response: Re
   infosCharactersController.getCharacterInfo(response);
 });
 
+/*
 characterRouter.post("/addInfosFichePersonnage", (request: Request, response: Response) => {
   infosCharactersController.addCharacterInfo(request, response);
-});
+}); */

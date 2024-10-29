@@ -18,6 +18,8 @@ export class InfosCharactersController {
     }
   }
 
+  /*
+
   // Méthode POST pour ajouter les infos de création de personnage et les sauvegarder avec node json db
   async addCharacterInfo(req: Request, res: Response) {
     try {
@@ -27,5 +29,5 @@ export class InfosCharactersController {
     } catch {
       res.status(500).json({ message: "Erreur interne du serveur" });
     }
-  }
+  } */
 }

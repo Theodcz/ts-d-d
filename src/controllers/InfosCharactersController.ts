@@ -8,7 +8,6 @@ export class InfosCharactersController {
     this.characterProvider = new InfosCharactersProvider();
   }
 
-  // Méthode GET pour récupérer les infos de création de personnage
   async getCharacterInfo(res: Response) {
     try {
       const characterInfo = await this.characterProvider.getCharacterCreationInfo();
@@ -18,16 +17,29 @@ export class InfosCharactersController {
     }
   }
 
-  /*
-
-  // Méthode POST pour ajouter les infos de création de personnage et les sauvegarder avec node json db
-  async addCharacterInfo(req: Request, res: Response) {
+  async getCharacterEspeceById(id: string) {
     try {
-      const characterInfo = req.body;
-      await this.characterProvider.addCharacterCreationInfo(characterInfo);
-      res.json({ message: "Infos de personnage ajoutées avec succès" });
+      const reponse = await this.characterProvider.getCharacterEspeceById(id);
+      if (reponse) {
+        return reponse;
+      } else {
+        throw new Error("Response is undefined");
+      }
     } catch {
-      res.status(500).json({ message: "Erreur interne du serveur" });
+      throw new Error("Erreur interne du serveur getCharacterEspeceById");
     }
-  } */
+  }
+
+  async getCharacterClasseById(id: string) {
+    try {
+      const reponse = await this.characterProvider.getCharacterClasseById(id);
+      if (reponse) {
+        return reponse;
+      } else {
+        throw new Error("Response is undefined");
+      }
+    } catch {
+      throw new Error("Erreur interne du serveur getCharacterEspeceById");
+    }
+  }
 }

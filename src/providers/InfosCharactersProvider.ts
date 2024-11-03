@@ -29,6 +29,7 @@ export class InfosCharactersProvider {
 
   async getAllCharacterEspece() {
     try {
+      console.log("szjeezjdjzso");
       const response = await fetch(`${this.baseUrl}/races`);
       if (!response.ok) {
         throw new Error(`Erreur de l'API D&D: ${response.status}`);
@@ -141,7 +142,6 @@ export class InfosCharactersProvider {
       if (!response.ok) {
         throw new Error(`Erreur de l'API D&D: ${response.status}`);
       }
-
       const json = (await response.json()) as JSONAlignement;
 
       const alignement = InfosCharactersAdapter.fromApiResponseAlignement(json);
@@ -150,11 +150,4 @@ export class InfosCharactersProvider {
       console.error(error);
     }
   }
-
-  /*
-
-  async addCharacterCreationInfo(characterInfo: any) {
-    // Créez une fiche personnnage
-    // Sauvegardez la fiche personnage
-  } */
 }

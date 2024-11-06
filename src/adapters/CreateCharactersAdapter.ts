@@ -30,15 +30,29 @@ export class CreateCharactersAdapter {
     return maitrisesSelected;
   }
 
+  static validateUrl(url: string): boolean {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   static createCharacterFromRequestToPersonnage(
     characterInfo: PersonnagePost,
     especeGetInfo: EspecePersonnage,
     classeGetInfo: ClassePersonnage,
   ): Personnage | null {
     try {
+      // Vérifier que l'imageUrl est une URL valide
+      if (!this.validateUrl(characterInfo.imageUrl)) {
+        throw new Error("L'URL de l'image est invalide: " + characterInfo.imageUrl);
+      }
+
       // Valider et transformer l'alignement
-      const moralValue = Moral[characterInfo.getAlignementMoral() as keyof typeof Moral];
-      const orderValue = Order[characterInfo.getAlignementOrder() as keyof typeof Order];
+      const moralValue = Moral[characterInfo.alignementMoral as keyof typeof Moral];
+      const orderValue = Order[characterInfo.alignementOrder as keyof typeof Order];
 
       if (!moralValue || !orderValue) {
         throw new Error("Valeurs d'alignement invalides");
@@ -51,7 +65,7 @@ export class CreateCharactersAdapter {
         // A VERIFIER
         especeGetInfo.setChoixLangues(
           this.selectLangues(
-            characterInfo.getEspeceLangues(),
+            characterInfo.especeLangues,
             especeGetInfo.getLangues().LanguesADefinir[0].choose,
             especeGetInfo.getLangues().LanguesADefinir[0].options,
           ),
@@ -62,7 +76,7 @@ export class CreateCharactersAdapter {
       if (especeGetInfo.getMaitrises().maitriseADefinir.length > 0) {
         especeGetInfo.setChoixMaitrises(
           this.selectMaitrises(
-            characterInfo.getEspeceMaitrises(),
+            characterInfo.especeMaitrises,
             especeGetInfo.getMaitrises().maitriseADefinir[0].choose,
             especeGetInfo.getMaitrises().maitriseADefinir[0].options,
           ),
@@ -76,7 +90,7 @@ export class CreateCharactersAdapter {
             .getSousEspeces()
             .setChoixLangues(
               this.selectLangues(
-                characterInfo.getSousEspeceLangues(),
+                characterInfo.sousEspeceLangues,
                 especeGetInfo.getSousEspeces().getLangues().LanguesADefinir[0].choose,
                 especeGetInfo.getSousEspeces().getLangues().LanguesADefinir[0].options,
               ),
@@ -87,7 +101,7 @@ export class CreateCharactersAdapter {
         if (especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir.length > 0) {
           especeGetInfo.setChoixMaitrises(
             this.selectMaitrises(
-              characterInfo.getSousEspeceMaitrises(),
+              characterInfo.sousEspeceMaitrises,
               especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir[0].choose,
               especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir[0].options,
             ),
@@ -96,11 +110,11 @@ export class CreateCharactersAdapter {
       }
 
       // Selection des maitrises de la classe
-      if (characterInfo.getClasseId() !== "") {
+      if (characterInfo.classeId !== "") {
         if (classeGetInfo.getMaitrises().maitriseADefinir.length > 0) {
           classeGetInfo.setChoixMaitrises(
             this.selectMaitrises(
-              characterInfo.getClasseMaitrises(),
+              characterInfo.classeMaitrises,
               classeGetInfo.getMaitrises().maitriseADefinir[0].choose,
               classeGetInfo.getMaitrises().maitriseADefinir[0].options,
             ),
@@ -108,13 +122,7 @@ export class CreateCharactersAdapter {
         }
       }
 
-      return new Personnage(
-        characterInfo.getNom(),
-        characterInfo.getImageUrl(),
-        alignement,
-        especeGetInfo,
-        classeGetInfo,
-      );
+      return new Personnage(characterInfo.nom, characterInfo.imageUrl, alignement, especeGetInfo, classeGetInfo);
     } catch (error) {
       console.error("Erreur lors de la création du personnage: ", error);
       throw error;

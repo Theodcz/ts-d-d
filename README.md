@@ -1,3 +1,20 @@
-# TypeScript + NodeJS Starter
+# Example Post
 
-This is the perfect tempalte starter to initiate a TypeScript + NodeJS project
+```json
+{
+  "nom": "Theo",
+  "imageUrl": "test.com",
+  "espece": {
+    "id": "half-elf",
+    "maitrise": ["History", "Intimidation"],
+    "langue": ["Dwarvish"],
+    "sousEspece": {}
+  },
+  "alignementMoral": "neutral",
+  "alignementOrder": "lawful",
+  "classe": {
+    "id": "cleric",
+    "maitrise": ["Insight", "Medicine"]
+  }
+}
+```

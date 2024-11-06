@@ -18,18 +18,20 @@ export class InfosCharactersProvider {
 
   // lui qui fait les fetch et envoie à l'adapteur pour quil transforme en model
   async getCharacterCreationInfo() {
-    return {
-      personnagesDisponibles: {
-        especes: await this.getAllCharacterEspece(),
-        classes: await this.getAllCharacterClasse(),
-        alignements: await this.getCharacterAlignement(),
-      },
+    const personnagesDisponibles = {
+      especes: await this.getAllCharacterEspece(),
+      alignements: await this.getCharacterAlignement(),
+      classes: await this.getAllCharacterClasse(),
     };
+
+    // 3 secondes de délai car en fonction des connexions, le get n'arrive pas à récupérer toutes les infos
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    return personnagesDisponibles;
   }
 
   async getAllCharacterEspece() {
     try {
-      console.log("szjeezjdjzso");
       const response = await fetch(`${this.baseUrl}/races`);
       if (!response.ok) {
         throw new Error(`Erreur de l'API D&D: ${response.status}`);
@@ -102,8 +104,6 @@ export class InfosCharactersProvider {
         const classe = await this.getCharacterClasseById(id);
         classes.push(classe);
       });
-
-      console.log(classes);
 
       return classes;
     } catch (error) {

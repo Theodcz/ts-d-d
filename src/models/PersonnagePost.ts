@@ -1,12 +1,14 @@
-export class PersonnagePost {
+/*export class PersonnagePost {
   private nom: string;
   private imageUrl: string;
   private especeId: string;
   private especeMaitrises: string[];
+  private sousEspeceMaitrises: string[];
   private especeLangues: string[];
+  private sousEspeceLangues: string[];
   private alignementMoral: string;
   private alignementOrder: string;
-  private classeId: string; // classe du personnage
+  private classeId: string;
   private classeMaitrises: string[];
 
   getNom(): string {
@@ -25,8 +27,16 @@ export class PersonnagePost {
     return this.especeMaitrises;
   }
 
+  getSousEspeceMaitrises(): string[] {
+    return this.sousEspeceMaitrises;
+  }
+
   getEspeceLangues(): string[] {
     return this.especeLangues;
+  }
+
+  getSousEspeceLangues(): string[] {
+    return this.sousEspeceLangues;
   }
 
   getAlignementMoral(): string {
@@ -50,9 +60,11 @@ export class PersonnagePost {
     imageUrl: string,
     alignementMoral: string,
     alignementOrder: string,
-    especeId: string, // langue et maitrise à choisir
+    especeId: string,
     especeMaitrises: string[],
+    sousEspeceMaitrises: string[],
     especeLangues: string[],
+    sousEspeceLangues: string[],
     classeId: string,
     classeMaitrises: string[],
   ) {
@@ -62,19 +74,11 @@ export class PersonnagePost {
     this.alignementOrder = alignementOrder;
     this.especeId = especeId;
     this.especeMaitrises = especeMaitrises;
+    this.sousEspeceMaitrises = sousEspeceMaitrises;
     this.especeLangues = especeLangues;
+    this.sousEspeceLangues = sousEspeceLangues;
     this.classeId = classeId;
     this.classeMaitrises = classeMaitrises;
   }
-
-  /*
-{
-    nom,
-    image
-    espece(id) {
-        liste des maitrise à choisir, langues à choisir)
-    un alignement
-    une classe(id, maitrise à choisir)
 }
 */
-}

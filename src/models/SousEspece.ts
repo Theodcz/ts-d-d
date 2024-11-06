@@ -20,6 +20,14 @@ export class SousEspece {
     this.bonus = bonus;
   }
 
+  setChoixLangues(langues: string[]): void {
+    this.langues.LanguesADefinir[0].options = langues;
+  }
+
+  setChoixMaitrises(maitrises: string[]): void {
+    this.maitrises.maitriseADefinir[0].options = maitrises;
+  }
+
   getId(): string {
     return this.id;
   }

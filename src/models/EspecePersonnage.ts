@@ -34,6 +34,14 @@ export class EspecePersonnage {
     this.bonus = bonus;
   }
 
+  setChoixLangues(langues: string[]): void {
+    this.langues.LanguesADefinir[0].options = langues;
+  }
+
+  setChoixMaitrises(maitrises: string[]): void {
+    this.maitrises.maitriseADefinir[0].options = maitrises;
+  }
+
   getId(): string {
     return this.id;
   }
@@ -52,6 +60,14 @@ export class EspecePersonnage {
 
   getMaitrises(): Maitrise {
     return this.maitrises;
+  }
+
+  getMaitrisesOptions(): string[] {
+    return this.maitrises.maitriseADefinir[0].options;
+  }
+
+  getMaitrisesNbOption(): number {
+    return this.maitrises.maitriseADefinir[0].choose;
   }
 
   getLangues(): Langues {

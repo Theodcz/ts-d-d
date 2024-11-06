@@ -9,7 +9,7 @@ import {
   JSONEspece,
   JSONEspeceById,
   JSONSubEspeceById,
-} from "adapters/JSONtype";
+} from "../type/JSONtype";
 
 export class InfosCharactersProvider {
   private baseUrl: string = "https://www.dnd5eapi.co/api";

@@ -1,1 +1,352 @@
-{"characters":[null,null,null,null,null,null,null,null,null,null,null,{"nom":"Nom du personnage"},{"nom":"Nom du personnage"},{"nom":"Nom du personnage","image":"URL ou chemin de l'image","espece":{"id":1,"maitrisesAChoisir":["maîtrise1","maîtrise2"],"languesAChoisir":["langue1","langue2"]},"alignement":"neutre bon","classe":{"id":"2","maitriseAChoisir":"maîtrise spécifique de la classe"}},{"nom":"Nom du personnage","image":"URL ou chemin de l'image","espece":{"id":1,"maitrisesAChoisir":["maîtrise1","maîtrise2"],"languesAChoisir":["langue1","langue2"]},"alignement":"neutre bon","classe":{"id":"cleric","maitriseAChoisir":"maîtrise spécifique de la classe"}},{"nom":"Nom du personnage","image":"URL ou chemin de l'image","espece":{"id":1,"maitrisesAChoisir":["maîtrise1","maîtrise2"],"languesAChoisir":["langue1","langue2"]},"alignement":"neutre bon","classe":{"id":"cleric","maitriseAChoisir":"maîtrise spécifique de la classe"}},{"nom":"Nom du personnage","image":"URL ou chemin de l'image","espece":{"id":1,"maitrisesAChoisir":["maîtrise1","maîtrise2"],"languesAChoisir":["langue1","langue2"]},"alignement":"neutre bon","classe":{"id":"cleric","maitriseAChoisir":"maîtrise spécifique de la classe"}},{"nom":"Nom du personnage","image":"URL ou chemin de l'image","espece":{"id":1,"maitrisesAChoisir":["maîtrise1","maîtrise2"],"languesAChoisir":["langue1","langue2"]},"alignement":"neutre bon","classe":{"id":"cleric","maitriseAChoisir":"maîtrise spécifique de la classe"}},{"nom":"Nom du personnage","image":"URL ou chemin de l'image","espece":{"id":1,"maitrisesAChoisir":["maîtrise1","maîtrise2"],"languesAChoisir":["langue1","langue2"]},"alignement":"neutre bon","classe":{"id":"cleric","maitriseAChoisir":"maîtrise spécifique de la classe"}},null,null,{"nom":"Theo","imageUrl":"test.com","espece":{"id":"dragonborn","nom":"Dragonborn","taille":"Medium","sousEspeces":{"id":"","nom":"","maitrises":{"maitriseDeDepart":[],"maitriseADefinir":[]},"langues":{"LanguesDeDepart":[],"LanguesADefinir":[]},"traits":{"traits":[]},"bonus":{"BonusScoreAbilite":[]}},"maitrises":{"maitriseDeDepart":[],"maitriseADefinir":[]},"langues":{"LanguesDeDepart":[{"name":"Common"},{"name":"Draconic"}],"LanguesADefinir":[]},"traits":{"traits":[{"name":"Draconic Ancestry"},{"name":"Breath Weapon"},{"name":"Damage Resistance"}]},"bonus":{"BonusScoreAbilite":[{"scoreAbilite":"STR","bonus":2},{"scoreAbilite":"CHA","bonus":1}]}},"alignement":{},"classe":{"id":"cleric","nom":"Cleric","maitrises":{"maitriseDeDepart":[{"name":"Light Armor"},{"name":"Medium Armor"},{"name":"Shields"},{"name":"Simple Weapons"},{"name":"Saving Throw: WIS"},{"name":"Saving Throw: CHA"}],"maitriseADefinir":[{"choose":2,"options":["Skill: History","Skill: Insight","Skill: Medicine","Skill: Persuasion","Skill: Religion"]}]},"jetsDeSauvegarde":["WIS","CHA"],"sort":{"caractLancementSort":[{"name":"WIS"}],"sortNiveau0":[{"name":"Guidance"},{"name":"Light"},{"name":"Mending"},{"name":"Resistance"},{"name":"Sacred Flame"},{"name":"Spare the Dying"},{"name":"Thaumaturgy"}]}}},{"nom":"Theo","imageUrl":"test.com","espece":{"id":"dragonborn","nom":"Dragonborn","taille":"Medium","sousEspeces":{"id":"","nom":"","maitrises":{"maitriseDeDepart":[],"maitriseADefinir":[]},"langues":{"LanguesDeDepart":[],"LanguesADefinir":[]},"traits":{"traits":[]},"bonus":{"BonusScoreAbilite":[]}},"maitrises":{"maitriseDeDepart":[],"maitriseADefinir":[]},"langues":{"LanguesDeDepart":[{"name":"Common"},{"name":"Draconic"}],"LanguesADefinir":[]},"traits":{"traits":[{"name":"Draconic Ancestry"},{"name":"Breath Weapon"},{"name":"Damage Resistance"}]},"bonus":{"BonusScoreAbilite":[{"scoreAbilite":"STR","bonus":2},{"scoreAbilite":"CHA","bonus":1}]}},"alignement":{},"classe":{"id":"cleric","nom":"Cleric","maitrises":{"maitriseDeDepart":[{"name":"Light Armor"},{"name":"Medium Armor"},{"name":"Shields"},{"name":"Simple Weapons"},{"name":"Saving Throw: WIS"},{"name":"Saving Throw: CHA"}],"maitriseADefinir":[{"choose":2,"options":["Skill: History","Skill: Insight","Skill: Medicine","Skill: Persuasion","Skill: Religion"]}]},"jetsDeSauvegarde":["WIS","CHA"],"sort":{"caractLancementSort":[{"name":"WIS"}],"sortNiveau0":[{"name":"Guidance"},{"name":"Light"},{"name":"Mending"},{"name":"Resistance"},{"name":"Sacred Flame"},{"name":"Spare the Dying"},{"name":"Thaumaturgy"}]}}}]}
+{
+  "characters": [
+    {
+      "nom": "Theo",
+      "imageUrl": "test.com",
+      "espece": {
+        "id": "half-elf",
+        "nom": "Half-Elf",
+        "taille": "Medium",
+        "sousEspeces": {
+          "id": "",
+          "nom": "",
+          "maitrises": { "maitriseDeDepart": [], "maitriseADefinir": [] },
+          "langues": { "LanguesDeDepart": [], "LanguesADefinir": [] },
+          "traits": { "traits": [] },
+          "bonus": { "BonusScoreAbilite": [] }
+        },
+        "maitrises": {
+          "maitriseDeDepart": [],
+          "maitriseADefinir": [
+            {
+              "choose": 2,
+              "options": [
+                "Skill: Acrobatics",
+                "Skill: Animal Handling",
+                "Skill: Arcana",
+                "Skill: Athletics",
+                "Skill: Deception",
+                "Skill: History",
+                "Skill: Insight",
+                "Skill: Intimidation",
+                "Skill: Investigation",
+                "Skill: Medicine",
+                "Skill: Nature",
+                "Skill: Perception",
+                "Skill: Performance",
+                "Skill: Persuasion",
+                "Skill: Religion",
+                "Skill: Sleight of Hand",
+                "Skill: Stealth",
+                "Skill: Survival"
+              ]
+            }
+          ]
+        },
+        "langues": {
+          "LanguesDeDepart": [{ "name": "Common" }, { "name": "Elvish" }],
+          "LanguesADefinir": [{ "choose": 1, "options": ["Dwarvish"] }]
+        },
+        "traits": { "traits": [{ "name": "Darkvision" }, { "name": "Fey Ancestry" }, { "name": "Skill Versatility" }] },
+        "bonus": { "BonusScoreAbilite": [{ "scoreAbilite": "CHA", "bonus": 2 }] }
+      },
+      "alignement": { "moral": "neutral", "order": "lawful" },
+      "classe": {
+        "id": "cleric",
+        "nom": "Cleric",
+        "maitrises": {
+          "maitriseDeDepart": [
+            { "name": "Light Armor" },
+            { "name": "Medium Armor" },
+            { "name": "Shields" },
+            { "name": "Simple Weapons" },
+            { "name": "Saving Throw: WIS" },
+            { "name": "Saving Throw: CHA" }
+          ],
+          "maitriseADefinir": [
+            {
+              "choose": 2,
+              "options": ["Skill: History", "Skill: Insight", "Skill: Medicine", "Skill: Persuasion", "Skill: Religion"]
+            }
+          ]
+        },
+        "jetsDeSauvegarde": ["WIS", "CHA"],
+        "sort": {
+          "caractLancementSort": [{ "name": "WIS" }],
+          "sortNiveau0": [
+            { "name": "Guidance" },
+            { "name": "Light" },
+            { "name": "Mending" },
+            { "name": "Resistance" },
+            { "name": "Sacred Flame" },
+            { "name": "Spare the Dying" },
+            { "name": "Thaumaturgy" }
+          ]
+        }
+      }
+    },
+    {
+      "nom": "Theo",
+      "imageUrl": "test.com",
+      "espece": {
+        "id": "half-elf",
+        "nom": "Half-Elf",
+        "taille": "Medium",
+        "sousEspeces": {
+          "id": "",
+          "nom": "",
+          "maitrises": { "maitriseDeDepart": [], "maitriseADefinir": [] },
+          "langues": { "LanguesDeDepart": [], "LanguesADefinir": [] },
+          "traits": { "traits": [] },
+          "bonus": { "BonusScoreAbilite": [] }
+        },
+        "maitrises": {
+          "maitriseDeDepart": [],
+          "maitriseADefinir": [
+            {
+              "choose": 2,
+              "options": [
+                "Skill: Acrobatics",
+                "Skill: Animal Handling",
+                "Skill: Arcana",
+                "Skill: Athletics",
+                "Skill: Deception",
+                "Skill: History",
+                "Skill: Insight",
+                "Skill: Intimidation",
+                "Skill: Investigation",
+                "Skill: Medicine",
+                "Skill: Nature",
+                "Skill: Perception",
+                "Skill: Performance",
+                "Skill: Persuasion",
+                "Skill: Religion",
+                "Skill: Sleight of Hand",
+                "Skill: Stealth",
+                "Skill: Survival"
+              ]
+            }
+          ]
+        },
+        "langues": {
+          "LanguesDeDepart": [{ "name": "Common" }, { "name": "Elvish" }],
+          "LanguesADefinir": [{ "choose": 1, "options": ["Dwarvish"] }]
+        },
+        "traits": { "traits": [{ "name": "Darkvision" }, { "name": "Fey Ancestry" }, { "name": "Skill Versatility" }] },
+        "bonus": { "BonusScoreAbilite": [{ "scoreAbilite": "CHA", "bonus": 2 }] }
+      },
+      "alignement": { "moral": "neutral", "order": "lawful" },
+      "classe": {
+        "id": "cleric",
+        "nom": "Cleric",
+        "maitrises": {
+          "maitriseDeDepart": [
+            { "name": "Light Armor" },
+            { "name": "Medium Armor" },
+            { "name": "Shields" },
+            { "name": "Simple Weapons" },
+            { "name": "Saving Throw: WIS" },
+            { "name": "Saving Throw: CHA" }
+          ],
+          "maitriseADefinir": [
+            {
+              "choose": 2,
+              "options": ["Skill: History", "Skill: Insight", "Skill: Medicine", "Skill: Persuasion", "Skill: Religion"]
+            }
+          ]
+        },
+        "jetsDeSauvegarde": ["WIS", "CHA"],
+        "sort": {
+          "caractLancementSort": [{ "name": "WIS" }],
+          "sortNiveau0": [
+            { "name": "Guidance" },
+            { "name": "Light" },
+            { "name": "Mending" },
+            { "name": "Resistance" },
+            { "name": "Sacred Flame" },
+            { "name": "Spare the Dying" },
+            { "name": "Thaumaturgy" }
+          ]
+        }
+      }
+    },
+    {
+      "nom": "Theo",
+      "imageUrl": "test.com",
+      "espece": {
+        "id": "half-elf",
+        "nom": "Half-Elf",
+        "taille": "Medium",
+        "sousEspeces": {
+          "id": "",
+          "nom": "",
+          "maitrises": { "maitriseDeDepart": [], "maitriseADefinir": [] },
+          "langues": { "LanguesDeDepart": [], "LanguesADefinir": [] },
+          "traits": { "traits": [] },
+          "bonus": { "BonusScoreAbilite": [] }
+        },
+        "maitrises": {
+          "maitriseDeDepart": [],
+          "maitriseADefinir": [{ "choose": 2, "options": ["History", "Intimidation"] }]
+        },
+        "langues": {
+          "LanguesDeDepart": [{ "name": "Common" }, { "name": "Elvish" }],
+          "LanguesADefinir": [{ "choose": 1, "options": ["Dwarvish"] }]
+        },
+        "traits": { "traits": [{ "name": "Darkvision" }, { "name": "Fey Ancestry" }, { "name": "Skill Versatility" }] },
+        "bonus": { "BonusScoreAbilite": [{ "scoreAbilite": "CHA", "bonus": 2 }] }
+      },
+      "alignement": { "moral": "neutral", "order": "lawful" },
+      "classe": {
+        "id": "cleric",
+        "nom": "Cleric",
+        "maitrises": {
+          "maitriseDeDepart": [
+            { "name": "Light Armor" },
+            { "name": "Medium Armor" },
+            { "name": "Shields" },
+            { "name": "Simple Weapons" },
+            { "name": "Saving Throw: WIS" },
+            { "name": "Saving Throw: CHA" }
+          ],
+          "maitriseADefinir": [
+            {
+              "choose": 2,
+              "options": ["Skill: History", "Skill: Insight", "Skill: Medicine", "Skill: Persuasion", "Skill: Religion"]
+            }
+          ]
+        },
+        "jetsDeSauvegarde": ["WIS", "CHA"],
+        "sort": {
+          "caractLancementSort": [{ "name": "WIS" }],
+          "sortNiveau0": [
+            { "name": "Guidance" },
+            { "name": "Light" },
+            { "name": "Mending" },
+            { "name": "Resistance" },
+            { "name": "Sacred Flame" },
+            { "name": "Spare the Dying" },
+            { "name": "Thaumaturgy" }
+          ]
+        }
+      }
+    },
+    {
+      "nom": "Theo",
+      "imageUrl": "test.com",
+      "espece": {
+        "id": "half-elf",
+        "nom": "Half-Elf",
+        "taille": "Medium",
+        "sousEspeces": {
+          "id": "",
+          "nom": "",
+          "maitrises": { "maitriseDeDepart": [], "maitriseADefinir": [] },
+          "langues": { "LanguesDeDepart": [], "LanguesADefinir": [] },
+          "traits": { "traits": [] },
+          "bonus": { "BonusScoreAbilite": [] }
+        },
+        "maitrises": {
+          "maitriseDeDepart": [],
+          "maitriseADefinir": [{ "choose": 2, "options": ["History", "Intimidation"] }]
+        },
+        "langues": {
+          "LanguesDeDepart": [{ "name": "Common" }, { "name": "Elvish" }],
+          "LanguesADefinir": [{ "choose": 1, "options": ["Dwarvish"] }]
+        },
+        "traits": { "traits": [{ "name": "Darkvision" }, { "name": "Fey Ancestry" }, { "name": "Skill Versatility" }] },
+        "bonus": { "BonusScoreAbilite": [{ "scoreAbilite": "CHA", "bonus": 2 }] }
+      },
+      "alignement": { "moral": "neutral", "order": "lawful" },
+      "classe": {
+        "id": "cleric",
+        "nom": "Cleric",
+        "maitrises": {
+          "maitriseDeDepart": [
+            { "name": "Light Armor" },
+            { "name": "Medium Armor" },
+            { "name": "Shields" },
+            { "name": "Simple Weapons" },
+            { "name": "Saving Throw: WIS" },
+            { "name": "Saving Throw: CHA" }
+          ],
+          "maitriseADefinir": [
+            {
+              "choose": 2,
+              "options": ["Skill: History", "Skill: Insight", "Skill: Medicine", "Skill: Persuasion", "Skill: Religion"]
+            }
+          ]
+        },
+        "jetsDeSauvegarde": ["WIS", "CHA"],
+        "sort": {
+          "caractLancementSort": [{ "name": "WIS" }],
+          "sortNiveau0": [
+            { "name": "Guidance" },
+            { "name": "Light" },
+            { "name": "Mending" },
+            { "name": "Resistance" },
+            { "name": "Sacred Flame" },
+            { "name": "Spare the Dying" },
+            { "name": "Thaumaturgy" }
+          ]
+        }
+      }
+    },
+    {
+      "nom": "Theo",
+      "imageUrl": "test.com",
+      "espece": {
+        "id": "half-elf",
+        "nom": "Half-Elf",
+        "taille": "Medium",
+        "sousEspeces": {
+          "id": "",
+          "nom": "",
+          "maitrises": { "maitriseDeDepart": [], "maitriseADefinir": [] },
+          "langues": { "LanguesDeDepart": [], "LanguesADefinir": [] },
+          "traits": { "traits": [] },
+          "bonus": { "BonusScoreAbilite": [] }
+        },
+        "maitrises": {
+          "maitriseDeDepart": [],
+          "maitriseADefinir": [{ "choose": 2, "options": ["History", "Intimidation"] }]
+        },
+        "langues": {
+          "LanguesDeDepart": [{ "name": "Common" }, { "name": "Elvish" }],
+          "LanguesADefinir": [{ "choose": 1, "options": ["Dwarvish"] }]
+        },
+        "traits": { "traits": [{ "name": "Darkvision" }, { "name": "Fey Ancestry" }, { "name": "Skill Versatility" }] },
+        "bonus": { "BonusScoreAbilite": [{ "scoreAbilite": "CHA", "bonus": 2 }] }
+      },
+      "alignement": { "moral": "neutral", "order": "lawful" },
+      "classe": {
+        "id": "cleric",
+        "nom": "Cleric",
+        "maitrises": {
+          "maitriseDeDepart": [
+            { "name": "Light Armor" },
+            { "name": "Medium Armor" },
+            { "name": "Shields" },
+            { "name": "Simple Weapons" },
+            { "name": "Saving Throw: WIS" },
+            { "name": "Saving Throw: CHA" }
+          ],
+          "maitriseADefinir": [{ "choose": 2, "options": ["Insight", "Medicine"] }]
+        },
+        "jetsDeSauvegarde": ["WIS", "CHA"],
+        "sort": {
+          "caractLancementSort": [{ "name": "WIS" }],
+          "sortNiveau0": [
+            { "name": "Guidance" },
+            { "name": "Light" },
+            { "name": "Mending" },
+            { "name": "Resistance" },
+            { "name": "Sacred Flame" },
+            { "name": "Spare the Dying" },
+            { "name": "Thaumaturgy" }
+          ]
+        }
+      }
+    }
+  ]
+}

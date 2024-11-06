@@ -2,31 +2,31 @@ import db from "../database/db";
 import { CreateCharactersAdapter } from "../adapters/CreateCharactersAdapter";
 import { EspecePersonnage } from "../models/EspecePersonnage";
 import { ClassePersonnage } from "../models/ClassePersonnage";
-import { PersonnagePost } from "../models/PersonnagePost";
+import { PersonnagePost } from "../type/POSTtype";
 import { Personnage } from "../models/Personnage";
-
+import { Response } from "express";
 export class CreateCharactersProvider {
   async addCharacterCreationInfo(
     characterInfo: PersonnagePost,
     especeGetInfo: EspecePersonnage,
     classeGetInfo: ClassePersonnage,
+    res: Response,
   ) {
     try {
-      // Ajouter les informations du personnage dans la base de données
-      // comparer class personnage
       const personnage = await CreateCharactersAdapter.createCharacterFromRequestToPersonnage(
         characterInfo,
         especeGetInfo,
         classeGetInfo,
       );
-      console.log("Personnage créé:", personnage);
 
       db.push("/characters[]", personnage, true);
-      console.log("Infos de personnage sauvegardées:", characterInfo);
+      res.json({ message: "Infos de personnage ajoutées avec succès" });
     } catch (error) {
-      console.error("Erreur lors de la sauvegarde des infos de personnage:", error);
+      const errorMessage = error instanceof Error ? error.message : "Erreur inconnue";
+      res.status(500).json({ message: errorMessage });
     }
   }
+
   async getCharacters(): Promise<Personnage[]> {
     try {
       // Lire tous les personnages stockés

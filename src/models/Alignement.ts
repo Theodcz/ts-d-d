@@ -1,13 +1,13 @@
 export enum Moral {
-  Bon = "good",
-  Mauvais = "evil",
-  Neutre = "neutral",
+  good = "good",
+  evil = "evil",
+  neutral = "neutral",
 }
 
 export enum Order {
-  Loyal = "lawful",
-  Neutre = "neutral",
-  Chaotique = "chaotic",
+  lawful = "lawful",
+  neutral = "neutral",
+  chaotic = "chaotic",
 }
 
 export class Alignement {
@@ -28,7 +28,7 @@ export class Alignement {
   }
 
   getAlignement(): string {
-    if (this.moral == Moral.Neutre && this.order == Order.Neutre) {
+    if (this.moral == Moral.neutral && this.order == Order.neutral) {
       return "neutral";
     }
     return `${this.moral}-${this.order}`;

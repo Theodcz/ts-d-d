@@ -17,6 +17,10 @@ export class ClassePersonnage {
     this.sort = sort;
   }
 
+  public setChoixMaitrises(maitrises: string[]): void {
+    this.maitrises.maitriseADefinir[0].options = maitrises;
+  }
+
   public getId(): string {
     return this.id;
   }
@@ -27,6 +31,14 @@ export class ClassePersonnage {
 
   public getMaitrises(): Maitrise {
     return this.maitrises;
+  }
+
+  public getNbMaitrises(): number {
+    return this.maitrises.maitriseADefinir[0].choose;
+  }
+
+  public getMaitrisesOptions(): string[] {
+    return this.maitrises.maitriseADefinir[0].options;
   }
 
   public getJetsDeSauvegarde(): JetSauvegarde[] {

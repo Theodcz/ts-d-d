@@ -1,5 +1,5 @@
 import { Alignement } from "../models/Alignement";
-import { JSONAlignement, JSONEspeceById, JSONClasseById, JSONClasseSort, JSONSubEspeceById } from "./JSONtype";
+import { JSONAlignement, JSONEspeceById, JSONClasseById, JSONClasseSort, JSONSubEspeceById } from "../type/JSONtype";
 import { Moral, Order } from "../models/Alignement";
 import { EspecePersonnage } from "../models/EspecePersonnage";
 import { Maitrise } from "../models/Maitrise";
@@ -263,31 +263,31 @@ export class InfosCharactersAdapter {
     json.results.forEach((result) => {
       switch (result.index) {
         case "neutral":
-          alignements.push(new Alignement(Moral.Neutre, Order.Neutre));
+          alignements.push(new Alignement(Moral.neutral, Order.neutral));
           break;
         case "lawful-good":
-          alignements.push(new Alignement(Moral.Bon, Order.Loyal));
+          alignements.push(new Alignement(Moral.good, Order.lawful));
           break;
         case "lawful-neutral":
-          alignements.push(new Alignement(Moral.Neutre, Order.Loyal));
+          alignements.push(new Alignement(Moral.neutral, Order.lawful));
           break;
         case "lawful-evil":
-          alignements.push(new Alignement(Moral.Mauvais, Order.Loyal));
+          alignements.push(new Alignement(Moral.evil, Order.lawful));
           break;
         case "neutral-good":
-          alignements.push(new Alignement(Moral.Bon, Order.Neutre));
+          alignements.push(new Alignement(Moral.good, Order.neutral));
           break;
         case "neutral-evil":
-          alignements.push(new Alignement(Moral.Mauvais, Order.Neutre));
+          alignements.push(new Alignement(Moral.evil, Order.neutral));
           break;
         case "chaotic-good":
-          alignements.push(new Alignement(Moral.Bon, Order.Chaotique));
+          alignements.push(new Alignement(Moral.good, Order.chaotic));
           break;
         case "chaotic-neutral":
-          alignements.push(new Alignement(Moral.Neutre, Order.Chaotique));
+          alignements.push(new Alignement(Moral.neutral, Order.chaotic));
           break;
         case "chaotic-evil":
-          alignements.push(new Alignement(Moral.Mauvais, Order.Chaotique));
+          alignements.push(new Alignement(Moral.evil, Order.chaotic));
           break;
         default:
           console.log(`Alignement non reconnu: ${result.index}`);

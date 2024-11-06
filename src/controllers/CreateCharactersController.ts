@@ -24,10 +24,8 @@ export class CreateCharactersController {
         classeId: req.body.classe.id || [],
         classeMaitrises: req.body.classe.maitrise || [],
       };
-      console.log("Request Body:", req.body);
 
       const infosCharactersController = new InfosCharactersController();
-      console.log("characterInfo ", characterInfo);
       const especeGetInfo = await infosCharactersController.getCharacterEspeceById(characterInfo.especeId);
       const classeGetInfo = await infosCharactersController.getCharacterClasseById(characterInfo.classeId);
 

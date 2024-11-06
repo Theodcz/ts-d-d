@@ -29,9 +29,7 @@ export class CreateCharactersProvider {
 
   async getCharacters(): Promise<Personnage[]> {
     try {
-      // Lire tous les personnages stockés
       const characters = await db.getData("/characters");
-      console.log("Personnages récupérés :", characters);
       return characters;
     } catch (error) {
       console.error("Erreur lors de la récupération des personnages:", error);

@@ -59,7 +59,7 @@ export class CreateCharactersProvider {
     try {
       const characters = await db.getData("/characters");
       const character = characters.find((character: JSONPersonnage) => character.nom === nom);
-      //const character = characters.find((character: JSONPersonnage) => character.nom === nom);
+
       return character || null;
     } catch (error) {
       console.error("Erreur lors de la récupération des personnages:", error);

@@ -34,6 +34,10 @@ export class EspecePersonnage {
     this.bonus = bonus;
   }
 
+  setSousEspeces(sousEspeces: SousEspece): void {
+    this.sousEspeces = sousEspeces;
+  }
+
   setChoixLangues(langues: string[]): void {
     this.langues.LanguesADefinir[0].options = langues;
   }

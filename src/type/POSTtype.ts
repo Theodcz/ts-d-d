@@ -3,8 +3,9 @@ export type PersonnagePost = {
   imageUrl: string;
   especeId: string;
   especeMaitrises: string[];
-  sousEspeceMaitrises: string[];
   especeLangues: string[];
+  sousEspeceId: string;
+  sousEspeceMaitrises: string[];
   sousEspeceLangues: string[];
   alignementMoral: string;
   alignementOrder: string;

@@ -1,11 +1,11 @@
-# Guide d'utilisation de l'API de gestion de personnages D&D
+# Guide d'utilisation de l'API de gestion de fiche personnages D&D
 
 ## Table des matières
 
 1. [Introduction](#introduction)
 2. [Endpoints disponibles](#endpoints-disponibles)
 3. [Exemples d'utilisation](#exemples-dutilisation)
-   - [Récupérer toutes les informations lié ]
+   - [Récupérer toutes les informations lié à la création de personnage](#récupérer-toutes-les-informations-lié-à-la-création-de-personnage)
    - [Créer un personnage](#créer-un-personnage)
    - [Récupérer toutes les fiches personnages](#récupérer-toutes-les-fiches-personnages)
    - [Récupérer une fiche personnages par nom](#récupérer-une-fiche-personnages-par-nom)
@@ -27,7 +27,7 @@ Ce projet est une API pour créer, gérer et récupérer des fiches de personnag
 
 ## Exemples d'utilisation
 
-### Récupère la liste de toute les espèces
+### Récupérer toutes les informations lié à la création de personnage
 
 // get
 
@@ -58,7 +58,7 @@ Dans cette requête, **HalfElf** est un half-elf de classe **cleric** sans sous 
 }
 ```
 
-Dans cette requête, **Test** est un elf de classe **cleric** et avec une sous-espèce **high-elf**
+Dans cette requête, `Test` est un elf de classe `cleric` et avec une sous-espèce `high-elf`
 
 ```json
 {
@@ -101,7 +101,7 @@ curl -X GET http://localhost:3000/getFichesPersonnages
 
 La réponse contiendra une liste de toutes les fiches personnages créés avec leurs attributs complets.
 
-## Récupérer une fiche personnages par nom
+## Récupérer une fiche personnages via son nom
 
 Pour récupérer un personnage spécifique par son nom, utilisez l'endpoint GET `/getCharacterByNom/:nom` en remplaçant `:nom` par le nom du personnage.
 

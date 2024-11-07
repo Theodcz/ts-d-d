@@ -1,5 +1,10 @@
 # Guide d'utilisation de l'API de gestion de fiche personnages D&D
 
+Réalisé par : 
+- [ Da Cruz Théo ]
+- [ Benault Alexandre ]
+- [ Masquelier Orféo ]
+
 ## Table des matières
 
 1. [Introduction](#introduction)
@@ -16,7 +21,7 @@
 
 ## Introduction
 
-Ce projet est une API pour créer, gérer et récupérer des fiches de personnages pour D&D 5e.....
+Ce projet consiste en une API en TypeScript permettant de créer, gérer, récupérer et sauvegarder des fiches de personnages pour D&D 5e.
 
 ## Endpoints disponibles
 
@@ -29,7 +34,21 @@ Ce projet est une API pour créer, gérer et récupérer des fiches de personnag
 
 ### Récupérer toutes les informations lié à la création de personnage
 
-// get
+Pour qu'un utilisateur puisse créer sa fiche de personnage, il faut déjà qu'il sachent les choix que lui propose le jeu :
+
+C'est pour cela qu'il va récupérer les informations de :
+
+- Toutes les `espèces` disponibles avec leur id, nom, taille, sous-espèces s'il y a, liste des maîtrises, liste des maîtrises à choisir, langues, langues à choisir, traits, bonus de caractéristique et donc une sous espèce s'il y a.
+
+- Tous les `alignements` disponibles, qu’ils concernent l’ordre ou la morale.
+
+- Toutes les `classes` disponibles avec leur id, nom, maîtrises, maîtrises à choisir, jets de sauvegarde, la caractéristique de lancement de sort s'il y a et les sorts de niveau 0 pour cette classe.
+
+### Exemple de requête GET `/getInfosPersonnage`
+
+```bash
+curl -X GET http://localhost:3000/getInfosPersonnage
+```
 
 ### Créer un personnage
 
@@ -85,9 +104,9 @@ Dans cette requête, `Test` est un elf de classe `cleric` et avec une sous-espè
 
 Dans ces exemple :
 
-- `espece` contient l'ID de l'espèce choisie ainsi que ses compétences (`maitrise`) et langues (`langue`).
+- `espece` contient l'ID de l'espèce choisie ainsi que ses compétences (`maitrise`) et langues (`langue`) à définir.
 - `sousEspece` est optionnelle, si le personnage n'a pas de sous-espèce ou que vous ne souhaitez pas en mettre, cette section peut être omise.
-- `classe` contient l'ID de la classe et ses compétences (`maitrise`) et langues (`langue`).
+- `classe` contient l'ID de la classe et ses compétences (`maitrise`) et langues (`langue`) à définir.
 
 ## Récupérer toutes les fiches personnages
 

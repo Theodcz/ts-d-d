@@ -29,7 +29,6 @@ export class CreateCharactersController {
       const infosCharactersController = new InfosCharactersController();
       const especeGetInfo = await infosCharactersController.getCharacterEspeceById(characterInfo.especeId);
       const classeGetInfo = await infosCharactersController.getCharacterClasseById(characterInfo.classeId);
-
       const nameAlreadyExists = await this.characterProvider.checkCharacterByNom(characterInfo.nom);
 
       await this.characterProvider.addCharacterCreationInfo(

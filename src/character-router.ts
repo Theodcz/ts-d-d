@@ -5,7 +5,7 @@ export const characterRouter = Router();
 const infosCharactersController = new InfosCharactersController();
 const createCharactersController = new CreateCharactersController();
 
-characterRouter.get("/getInfosFichePersonnage", (_request: Request, response: Response) => {
+characterRouter.get("/getInfosPersonnage", (_request: Request, response: Response) => {
   infosCharactersController.getCharacterInfo(response);
 });
 
@@ -13,6 +13,10 @@ characterRouter.get("/getFichesPersonnages", (_request: Request, response: Respo
   createCharactersController.getCharacters(response);
 });
 
-characterRouter.post("/addInfosFichePersonnage", (request: Request, response: Response) => {
+characterRouter.get("/getFichePersonnageByName/:nom", (request: Request, response: Response) => {
+  createCharactersController.getCharacterByNom(request.params.nom, response);
+});
+
+characterRouter.post("/addFichePersonnage", (request: Request, response: Response) => {
   createCharactersController.addCharacterInfo(request, response);
 });

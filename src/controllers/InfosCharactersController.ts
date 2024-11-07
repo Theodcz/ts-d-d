@@ -26,7 +26,7 @@ export class InfosCharactersController {
         throw new Error("Response is undefined");
       }
     } catch {
-      throw new Error("Erreur interne du serveur getCharacterEspeceById");
+      throw new Error(`L'id ${id} de l'espèce n'existe pas ou est null`);
     }
   }
 
@@ -39,7 +39,7 @@ export class InfosCharactersController {
         throw new Error("Response is undefined");
       }
     } catch {
-      throw new Error("Erreur interne du serveur getCharacterEspeceById");
+      throw new Error(`L'id ${id} de la classe n'existe pas ou est null`);
     }
   }
 }

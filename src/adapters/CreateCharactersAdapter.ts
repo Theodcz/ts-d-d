@@ -1,12 +1,25 @@
 import { Personnage } from "../models/Personnage";
 import { PersonnagePost } from "../type/POSTtype";
 import { Alignement, Moral, Order } from "../models/Alignement";
-import { EspecePersonnage } from "models/EspecePersonnage";
-import { ClassePersonnage } from "models/ClassePersonnage";
+import { EspecePersonnage } from "../models/EspecePersonnage";
+import { ClassePersonnage } from "../models/ClassePersonnage";
+import { SousEspece } from "../models/SousEspece";
+import { Maitrise } from "../models/Maitrise";
+import { Langues } from "../models/Langues";
+import { Traits } from "../models/Traits";
+import { Bonus } from "../models/Bonus";
 
 export class CreateCharactersAdapter {
   static selectLangues(langues: string[], nbLangues: number, languesOptions: string[]): string[] {
     const languesSelected: string[] = [];
+
+    if (
+      (langues.length == 0 && nbLangues > 0) ||
+      (langues.length > 0 && nbLangues == 0) ||
+      langues.length != nbLangues
+    ) {
+      throw new Error("Merci de sélectionner le bon nombre de langues");
+    }
 
     for (let i = 0; i < nbLangues; i++) {
       if (!languesOptions.includes(langues[i])) {
@@ -20,6 +33,14 @@ export class CreateCharactersAdapter {
   static selectMaitrises(maitrises: string[], nbMaitrises: number, maitrisesOptions: string[]) {
     const maitrisesSelected: string[] = [];
     const maitrisesOptionsRefactor = maitrisesOptions.map((maitrise) => maitrise.replace("Skill: ", ""));
+
+    if (
+      (maitrises.length == 0 && nbMaitrises > 0) ||
+      (maitrises.length > 0 && nbMaitrises == 0) ||
+      maitrises.length != nbMaitrises
+    ) {
+      throw new Error("Merci de sélectionner le bon nombre de maitrise");
+    }
 
     for (let i = 0; i < nbMaitrises; i++) {
       if (!maitrisesOptionsRefactor.includes(maitrises[i])) {
@@ -43,11 +64,23 @@ export class CreateCharactersAdapter {
     characterInfo: PersonnagePost,
     especeGetInfo: EspecePersonnage,
     classeGetInfo: ClassePersonnage,
+    characterName: Personnage | null,
   ): Personnage | null {
     try {
-      // Vérifier que l'imageUrl est une URL valide
       if (!this.validateUrl(characterInfo.imageUrl)) {
         throw new Error("L'URL de l'image est invalide: " + characterInfo.imageUrl);
+      }
+
+      if (characterInfo.sousEspeceId !== especeGetInfo.getSousEspeces().getId()) {
+        throw new Error("La sous-espece n'existe pas pour cette espece");
+      }
+
+      if (characterInfo.nom === "") {
+        throw new Error("Le nom du personnage est vide");
+      }
+
+      if (characterName !== null) {
+        throw new Error("Le nom du personnage existe déjà");
       }
 
       // Valider et transformer l'alignement
@@ -62,7 +95,6 @@ export class CreateCharactersAdapter {
 
       // Selection de la langue de l'espece
       if (especeGetInfo.getLangues().LanguesADefinir.length > 0) {
-        // A VERIFIER
         especeGetInfo.setChoixLangues(
           this.selectLangues(
             characterInfo.especeLangues,
@@ -83,43 +115,51 @@ export class CreateCharactersAdapter {
         );
       }
 
-      if (especeGetInfo.getSousEspeces().getId() !== "") {
-        // Selection de la langue de la sous-espece si il y en a une
-        if (especeGetInfo.getSousEspeces().getLangues().LanguesADefinir.length > 0) {
-          especeGetInfo
-            .getSousEspeces()
-            .setChoixLangues(
-              this.selectLangues(
-                characterInfo.sousEspeceLangues,
-                especeGetInfo.getSousEspeces().getLangues().LanguesADefinir[0].choose,
-                especeGetInfo.getSousEspeces().getLangues().LanguesADefinir[0].options,
+      if (characterInfo.sousEspeceId !== "") {
+        if (especeGetInfo.getSousEspeces().getId() !== "") {
+          // Selection de la langue de la sous-espece si il y en a une
+          if (especeGetInfo.getSousEspeces().getLangues().LanguesADefinir.length > 0) {
+            especeGetInfo
+              .getSousEspeces()
+              .setChoixLangues(
+                this.selectLangues(
+                  characterInfo.sousEspeceLangues,
+                  especeGetInfo.getSousEspeces().getLangues().LanguesADefinir[0].choose,
+                  especeGetInfo.getSousEspeces().getLangues().LanguesADefinir[0].options,
+                ),
+              );
+          }
+
+          // Selection des maitrises de la sous-espece si il y en a une
+          if (especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir.length > 0) {
+            especeGetInfo.setChoixMaitrises(
+              this.selectMaitrises(
+                characterInfo.sousEspeceMaitrises,
+                especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir[0].choose,
+                especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir[0].options,
               ),
             );
+          }
         }
+      } else {
+        const maitriseNull = new Maitrise([], []);
+        const languesNull = new Langues([], []);
+        const traitsNull = new Traits([]);
+        const bonusNull = new Bonus([]);
+        const sousEspeceNull = new SousEspece("", "", maitriseNull, languesNull, traitsNull, bonusNull);
 
-        // Selection des maitrises de la sous-espece si il y en a une
-        if (especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir.length > 0) {
-          especeGetInfo.setChoixMaitrises(
-            this.selectMaitrises(
-              characterInfo.sousEspeceMaitrises,
-              especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir[0].choose,
-              especeGetInfo.getSousEspeces().getMaitrises().maitriseADefinir[0].options,
-            ),
-          );
-        }
+        especeGetInfo.setSousEspeces(sousEspeceNull);
       }
 
       // Selection des maitrises de la classe
-      if (characterInfo.classeId !== "") {
-        if (classeGetInfo.getMaitrises().maitriseADefinir.length > 0) {
-          classeGetInfo.setChoixMaitrises(
-            this.selectMaitrises(
-              characterInfo.classeMaitrises,
-              classeGetInfo.getMaitrises().maitriseADefinir[0].choose,
-              classeGetInfo.getMaitrises().maitriseADefinir[0].options,
-            ),
-          );
-        }
+      if (classeGetInfo.getMaitrises().maitriseADefinir.length > 0) {
+        classeGetInfo.setChoixMaitrises(
+          this.selectMaitrises(
+            characterInfo.classeMaitrises,
+            classeGetInfo.getMaitrises().maitriseADefinir[0].choose,
+            classeGetInfo.getMaitrises().maitriseADefinir[0].options,
+          ),
+        );
       }
 
       return new Personnage(characterInfo.nom, characterInfo.imageUrl, alignement, especeGetInfo, classeGetInfo);

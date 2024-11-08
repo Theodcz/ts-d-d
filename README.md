@@ -65,8 +65,7 @@ Dans cette requête, **HalfElf** est un half-elf de classe **cleric** sans sous 
   "espece": {
     "id": "half-elf",
     "maitrise": ["History", "Intimidation"],
-    "langue": ["Dwarvish"],
-    "sousEspece": {}
+    "langue": ["Dwarvish"]
   },
   "alignementMoral": "neutral",
   "alignementOrder": "lawful",

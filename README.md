@@ -54,7 +54,7 @@ curl -X GET http://localhost:3000/getInfosPersonnage
 
 Pour créer une fiche personnage, vous devrez utiliser l'endpoint POST `/addFichePersonnage`. Avant de créer un personnage, vous pouvez récupérer toutes les informations d'espèces, sous-espèces et classes disponibles pour s'assurer de faire les bon choix via l'endpoint `/getInfosPersonnage`.
 
-#### Exemple de requête POST `/addInfosFichePersonnage`
+#### Exemple de requête POST `/addFichePersonnage`
 
 Dans cette requête, **HalfElf** est un half-elf de classe **cleric** sans sous espece
 
@@ -121,7 +121,7 @@ La réponse contiendra une liste de toutes les fiches personnages créés avec l
 
 ## Récupérer une fiche personnages via son nom
 
-Pour récupérer un personnage spécifique par son nom, utilisez l'endpoint GET `/getCharacterByNom/:nom` en remplaçant `:nom` par le nom du personnage.
+Pour récupérer un personnage spécifique par son nom, utilisez l'endpoint GET `/getFichePersonnageByName/:nom` en remplaçant `:nom` par le nom du personnage.
 
 ### Exemple de requête GET `/getFichePersonnageByName/Test`
 
